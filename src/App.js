@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./components/Login";
+import DashboardLayout from "./layout/DashboardLayout";
+import DashboardHome from "./pages/Dashboard/DashboardHome";
+import AddStudent from "./pages/Dashboard/AddStudent";
+import AddStaff from "./pages/Dashboard/AddStaff";
+import AddNotice from "./pages/Dashboard/AddNotice";
+import Profile from "./pages/Dashboard/Profile";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <BrowserRouter>
+      <Routes>
+        {/* ---------- LOGIN PAGE ---------- */}
+        <Route path="/login" element={<Login />} />
+
+        {/* ---------- PROTECTED DASHBOARD ---------- */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Route index element={<DashboardHome />} />
+          <Route path="add-student" element={<AddStudent />} />
+          <Route path="add-staff" element={<AddStaff />} />
+          <Route path="add-notice" element={<AddNotice />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
+
+        {/* fallback — redirect to login */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
