@@ -441,6 +441,7 @@ const submitButton = {
   );
 
   
+  
 
   return (
     <div className="staff-list-container">
@@ -541,6 +542,7 @@ const submitButton = {
           </div>
         </div>
       </div>
+      
       
       <div className="staff-table-container">
         <table className="staff-table">
@@ -706,13 +708,36 @@ const submitButton = {
             ) : (
               <tr>
                 <td colSpan="6" className="empty-state">
-                  <div className="empty-state-icon">
-                    <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
+                  <div className="empty-state-content">
+                    <div className="empty-state-illustration">
+                      <svg width="120" height="100" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
+                    </div>
+                    <h3 className="empty-state-title">
+                      {staff.length === 0 ? 'No Staff Members Yet' : 'No Matching Staff Found'}
+                    </h3>
+                    <p className="empty-state-description">
+                      {staff.length === 0 
+                        ? 'Get started by adding your first staff member.' 
+                        : 'No staff members match your current filters or search criteria.'}
+                    </p>
+                    
+                    {staff.length > 0 && filters.search && (
+                      <button 
+                        onClick={clearFilters}
+                        className="empty-state-button"
+                      >
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                        Clear search and filters
+                      </button>
+                    )}
                   </div>
-                  <p className="empty-state-text">No staff members found</p>
-                  <p className="text-sm">Try adjusting your search or filter criteria</p>
                 </td>
               </tr>
             )}
