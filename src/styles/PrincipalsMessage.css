@@ -1,0 +1,257 @@
+/* Principal's Message Page Styles */
+.principals-message {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Header Section */
+.message-header {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.principal-image {
+  flex: 0 0 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 5px solid #fff;
+  outline: 1px solid #eee;
+}
+
+.principal-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.principal-image:hover img {
+  transform: scale(1.05);
+}
+
+.principal-info {
+  flex: 1;
+}
+
+.principal-info h2 {
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+}
+
+.principal-info h3 {
+  color: #3498db;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.principal-info .designation,
+.principal-info .qualification,
+.principal-info .experience {
+  color: #666;
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.principal-info .experience {
+  font-weight: 500;
+  color: #27ae60;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #ddd;
+  display: inline-block;
+}
+
+/* Message Content */
+.message-content {
+  line-height: 1.8;
+  color: #444;
+  font-size: 1.05rem;
+}
+
+.message-content .greeting {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+.message-content h4 {
+  color: #2c3e50;
+  margin: 2.5rem 0 1rem 0;
+  font-size: 1.3rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.message-content h4:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  height: 0.5em;
+  width: 0.5em;
+  background: #3498db;
+  border-radius: 50%;
+}
+
+.message-content p {
+  margin-bottom: 1.2rem;
+  text-align: justify;
+}
+
+.message-content .closing {
+  margin-top: 3rem;
+  font-style: italic;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+/* Quick Links */
+.quick-links {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid #eee;
+}
+
+.quick-links h3 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.quick-links h3:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #3498db;
+  border-radius: 2px;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.link-card {
+  background: #f8f9fa;
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link-card:hover {
+  background: #3498db;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.link-card span:first-child {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.link-card:hover span:first-child {
+  transform: scale(1.2);
+}
+
+.link-card span:last-child {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .message-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .principal-image {
+    width: 200px;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .principal-info h2 {
+    font-size: 1.7rem;
+  }
+  
+  .principal-info h3 {
+    font-size: 1.3rem;
+  }
+  
+  .message-content {
+    font-size: 1rem;
+  }
+  
+  .links-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .principals-message {
+    padding: 1.5rem;
+  }
+  
+  .links-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .message-content h4 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-header,
+.message-content,
+.quick-links {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.message-content {
+  animation-delay: 0.1s;
+}
+
+.quick-links {
+  animation-delay: 0.2s;
+}

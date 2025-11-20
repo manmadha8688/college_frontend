@@ -1,0 +1,251 @@
+/* About Page Styles */
+.about-page {
+  margin-top: 80px;
+  color: #333;
+}
+
+/* Hero Section */
+.about-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+              url('') no-repeat center center/cover;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.about-hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.about-hero p {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Main Content */
+.about-content {
+  padding: 5rem 0;
+  background-color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 3rem;
+}
+
+/* Sidebar */
+.about-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.about-sidebar h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #3498db;
+}
+
+.sidebar-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-links li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-links a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #555;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-links a:hover,
+.sidebar-links a.active {
+  background-color: #f0f7ff;
+  color: #3498db;
+  padding-left: 1.25rem;
+}
+
+/* Main Content Area */
+.about-main {
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.about-main h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.about-main h2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: #3498db;
+  border-radius: 2px;
+}
+
+.about-main p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+/* Quick Facts Section */
+.quick-facts {
+  background-color: #f8f9fa;
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.quick-facts h2 {
+  color: #2c3e50;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+}
+
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.fact-card {
+  background: white;
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.fact-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #3498db;
+  margin-bottom: 0.5rem;
+}
+
+.fact-title {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* Campus Tour Section */
+.campus-tour {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+              url('') no-repeat center center/cover;
+  padding: 6rem 0;
+  color: white;
+  text-align: center;
+}
+
+.tour-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.tour-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .about-sidebar {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+  
+  .about-hero h1 {
+    font-size: 2.8rem;
+  }
+  
+  .about-hero p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    height: 300px;
+  }
+  
+  .about-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .about-hero p {
+    font-size: 1.1rem;
+  }
+  
+  .facts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .facts-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+  }
+  
+  .tour-content h2 {
+    font-size: 2rem;
+  }
+  
+  .tour-content p {
+    font-size: 1rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.about-main > *,
+.fact-card,
+.tour-content {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.fact-card:nth-child(2) { animation-delay: 0.1s; }
+.fact-card:nth-child(3) { animation-delay: 0.2s; }
+.fact-card:nth-child(4) { animation-delay: 0.3s; }

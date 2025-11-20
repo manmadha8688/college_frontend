@@ -1,0 +1,25 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 0;
+  background-color: #ffffff;
+}
+
+/* Ensure content doesn't get hidden behind fixed navbar */
+.main-content {
+  padding-top: 80px; /* Adjust based on your navbar height */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+    padding-top: 70px; /* Adjust for mobile header */
+  }
+}

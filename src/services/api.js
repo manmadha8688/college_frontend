@@ -51,7 +51,22 @@ export const apiRequest = async (endpoint, options = {}) => {
     throw new Error(error.error || error.detail || 'Request failed');
   }
   
-  return response.json();
+  // Handle 204 No Content responses (DELETE operations)
+  if (response.status === 204 || response.statusText === 'No Content') {
+    return { message: 'Operation completed successfully' };
+  }
+  
+  // Try to parse JSON response, return empty object if no content
+  try {
+    const text = await response.text();
+    if (text && text.trim()) {
+      return JSON.parse(text);
+    }
+    return { message: 'Operation completed successfully' };
+  } catch (e) {
+    // If JSON parsing fails, return success message
+    return { message: 'Operation completed successfully' };
+  }
 };
 
 // Login API
@@ -136,5 +151,126 @@ export const createNotice = async (noticeData) => {
 // Get Notices API
 export const getNotices = async () => {
   return apiRequest('/api/notices/');
+};
+
+// List Students API (Admin only)
+export const getStudents = async () => {
+  return apiRequest('/api/auth/students/');
+};
+
+// List Staff API (Admin only)
+export const getStaff = async () => {
+  return apiRequest('/api/auth/staff/');
+};
+
+// Update Notice API
+export const updateNotice = async (noticeId, noticeData) => {
+  return apiRequest(`/api/notices/manage/${noticeId}/`, {
+    method: 'PATCH',
+    body: JSON.stringify(noticeData),
+  });
+};
+
+// Delete Notice API
+export const deleteNotice = async (noticeId) => {
+  return apiRequest(`/api/notices/manage/${noticeId}/`, {
+    method: 'DELETE',
+  });
+};
+
+// Update Student API
+export const updateStudent = async (studentId, studentData) => {
+  return apiRequest(`/api/auth/students/${studentId}/`, {
+    method: 'PATCH',
+    body: JSON.stringify(studentData),
+  });
+};
+
+// Delete Student API
+export const deleteStudent = async (studentId) => {
+  return apiRequest(`/api/auth/students/${studentId}/`, {
+    method: 'DELETE',
+  });
+};
+
+// Update Staff API
+export const updateStaff = async (staffId, staffData) => {
+  return apiRequest(`/api/auth/staff/${staffId}/`, {
+    method: 'PATCH',
+    body: JSON.stringify(staffData),
+  });
+};
+
+// Delete Staff API
+export const deleteStaff = async (staffId) => {
+  return apiRequest(`/api/admin/staff/${staffId}/`, {
+    method: 'DELETE',
+  });
+};
+
+// In api.js, add this function to get department subjects for a student
+export const getDepartmentSubjects = async (department) => {
+  
+  return apiRequest(`/api/syllabus/department/${department}/`, {
+      method: 'GET',
+    });
+    
+};
+
+// Syllabus API
+export const getSubjects = async () => {
+  return apiRequest('/api/syllabus/subjects/');
+};
+
+export const createSubject = async (subjectData) => {
+  return apiRequest('/api/syllabus/subjects/', {
+    method: 'POST',
+    body: JSON.stringify(subjectData)
+  });
+};
+
+
+
+// In api.js, add this line to the exports
+export const createOrUpdateSyllabus = async (subjectId, pdfUrl) => {
+  return apiRequest(`/api/syllabus/syllabus/`, {
+    method: 'POST',
+    body: JSON.stringify({ subject: subjectId, pdf_url: pdfUrl }),
+  });
+};
+
+// Update a syllabus
+export const updateSyllabus = async (id, pdfUrl) => {
+  return await apiRequest(`/api/syllabus/syllabus/${id}/`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      pdf_url: pdfUrl
+    }),
+  });
+};
+
+// Delete a syllabus
+export const deleteSyllabus = async (id) => {
+  return await apiRequest(`/api/syllabus/${id}/`, {
+    method: 'DELETE',
+  });
+};
+
+// Assign HOD API
+export const assignHOD = async (staffId, hodData) => {
+  return apiRequest('/api/auth/hods/', {
+    method: 'POST',
+    body: JSON.stringify({
+      staff: staffId,  // This is the primary key of the Staff model
+      department: hodData.department,  // Make sure this is a valid department code (e.g., "IT")
+      additional_responsibilities: hodData.additional_responsibilities || '',
+      is_active: true,
+      start_date: new Date().toISOString().split('T')[0]
+    })
+  });
+};
+
+export const getHODs = async () => {
+  return apiRequest('/api/auth/hods/');
 };
 

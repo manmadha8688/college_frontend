@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { login as loginAPI } from '../services/api';
-import './Login.css';
+import '../styles/Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +15,11 @@ const Login = () => {
   // Redirect if already authenticated
   React.useEffect(() => {
     if (isAuthenticated) {
-      navigate('/', { replace: true });
+      // Add a small delay to ensure the auth state is fully updated
+      const timer = setTimeout(() => {
+        navigate('/', { replace: true });
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [isAuthenticated, navigate]);
 
