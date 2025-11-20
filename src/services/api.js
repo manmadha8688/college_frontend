@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://college-backend-1-ob7d.onrender.com';
 
 // Get stored tokens
 export const getTokens = () => {
